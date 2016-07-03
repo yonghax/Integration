@@ -37,6 +37,9 @@
     <Compile Include="Api\apps.py" />
     <Compile Include="Api\migrations\__init__.py" />
     <Compile Include="Api\models.py" />
+    <Compile Include="Api\Serializers.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Api\tests.py" />
     <Compile Include="Api\views.py" />
     <Compile Include="Api\__init__.py" />

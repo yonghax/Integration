@@ -1,9 +1,8 @@
-from tastypie.utils.timezone import now
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.text import slugify
 
-class OrderModel(models.Model):
+class SaleOrder(models.Model):
     SaleOrderNo = models.CharField(max_length=200),
     OrderDate = models.DateField(),
     PartnerID = models.CharField(max_length=200),
@@ -15,13 +14,14 @@ class OrderModel(models.Model):
     Warehouse = models.CharField(max_length=50)
     
     class Meta:
-        managed = False    
+        managed = False
+        ordering = ('SalesOrderNo',)
 
     def __unicode__(self):
         return self.SaleOrderNo
 
-class OrderDetailModel(models.Model):
-    SalesOrderNo = models.ForeignKey(OrderModel, on_delete=models.CASCADE),
+class SaleOrderLine(models.Model):
+    SalesOrderNo = models.ForeignKey(SaleOrder, on_delete=models.CASCADE),
     Product = models.CharField(max_length=50),
     Qty = models.IntegerField(),
     Uom = models.CharField(max_length=10),
