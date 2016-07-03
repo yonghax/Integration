@@ -87,3 +87,7 @@ ENV/
 
 # Rope project settings
 .ropeproject
+/Integration/bin
+/Integration/obj/Debug
+/Integration/.vs/Integration/v14
+/Integration/Api/models.py
