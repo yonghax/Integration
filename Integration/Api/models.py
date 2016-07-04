@@ -8,29 +8,28 @@ class SaleOrder(models.Model):
     PartnerID = models.CharField(max_length=200),
     PartnerInvoice = models.CharField(max_length=1000),
     PartnerShipping = models.CharField(max_length=1000),
-    AmountUntaxed = models.DecimalField(decimal_places=2),
-    AmountTax = models.DecimalField(decimal_places=2),
-    AmountTotal = models.DecimalField(decimal_places = 2),
+    AmountUntaxed = models.DecimalField(max_digits=19, decimal_places=2),
+    AmountTax = models.DecimalField(max_digits=19, decimal_places=2),
+    AmountTotal = models.DecimalField(max_digits=19, decimal_places = 2),
     Warehouse = models.CharField(max_length=50)
     
     class Meta:
         managed = False
-        ordering = ('SalesOrderNo',)
 
     def __unicode__(self):
         return self.SaleOrderNo
 
 class SaleOrderLine(models.Model):
-    SalesOrderNo = models.ForeignKey(SaleOrder, on_delete=models.CASCADE),
+    SaleOrderNo = models.ForeignKey(SaleOrder, on_delete=models.CASCADE),
     Product = models.CharField(max_length=50),
     Qty = models.IntegerField(),
     Uom = models.CharField(max_length=10),
     Currency = models.CharField(max_length=10),
-    PriceUnitAmount = models.DecimalField(decimal_places=2),
-    PriceTaxAmount = models.DecimalField(decimal_places=2),
-    DiscountAmount = models.DecimalField(decimal_places=2),
-    SubTotalAmount = models.DecimalField(decimal_places=2),
-    TotalAmount = models.DecimalField(decimal_places=2)
+    PriceUnitAmount = models.DecimalField(max_digits=19, decimal_places=2),
+    PriceTaxAmount = models.DecimalField(max_digits=19, decimal_places=2),
+    DiscountAmount = models.DecimalField(max_digits=19, decimal_places=2),
+    SubTotalAmount = models.DecimalField(max_digits=19, decimal_places=2),
+    TotalAmount = models.DecimalField(max_digits=19, decimal_places=2)
     
     class Meta:
         managed = False

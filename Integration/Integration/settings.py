@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'rest_framework',
+    'Api',
     # Add your apps here to enable them
     'django.contrib.admin',
     'django.contrib.auth',
@@ -79,8 +80,10 @@ WSGI_APPLICATION = 'Integration.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'Test',
+        'USER': 'admin',
+        'PASSWORD': 'admin123^',
     }
 }
 

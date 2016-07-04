@@ -2,14 +2,19 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from Api.models import SaleOrder, SaleOrderLine
-from Api.serializers import SaleOrderSerializer, SaleOrderLineSerializer
+from Api.Serializers import SaleOrderSerializer, SaleOrderLineSerializer
 
 @api_view(['POST'])
 def OrderSyncProcess(request):
     """
     Retreive and process order instance. 
     """
-    if request.method == 'POST':
+    if request.method == 'GET':
+        SaleOrders = SaleOrder.objects.all()
+        serializer = SaleOrderSerializer(SaleOrders, many=True)
+        return Response(serializer.data)
+    
+    elif request.method == 'POST':
       serializer = SaleOrderSerializer(data=request.data)
       if serializer.is_valid():
           serializer.save()
